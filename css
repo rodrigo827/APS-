@@ -1,1 +1,182 @@
- 
+ /* CONFIGURAÇÕES GERAIS E NOVA PALETA DE CORES (DEEP BLACK & NEON TECH) */
+:root {
+    --bg-pure-black: #000000;  /* Fundo principal 100% preto */
+    --bg-card: #0d1117;        /* Cinza escuro para destacar os cards do fundo */
+    --primary: #10b981;        /* Verde Esmeralda Neon (Destaques e links) */
+    --secondary: #059669;      /* Tom de verde complementar para gradientes */
+    --text-main: #ffffff;      /* Texto principal em branco puro (Contraste máximo) */
+    --text-muted: #9ca3af;     /* Cinza claro para textos secundários e descrições */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-pure-black);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 10%;
+    background-color: rgba(0, 0, 0, 0.9); /* Navbar preta translúcida */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-main);
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.navbar nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.navbar nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar nav a:hover {
+    color: var(--primary);
+}
+
+/* HERO SECTION (HOME) */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
+    background: radial-gradient(circle at center, #022c22 0%, var(--bg-pure-black) 70%);
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+.highlight {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.btn-primary {
+    padding: 0.8rem 2rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: #000000; /* Texto preto dentro do botão brilhante para contraste */
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* SEÇÕES GENÉRICAS */
+section {
+    padding: 6rem 10% 4rem 10%;
+    background-color: var(--bg-pure-black);
+}
+
+section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+/* SOBRE NÓS */
+.about {
+    background-color: #050505; /* Variação sutil do preto para quebra de seção */
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+}
+
+/* SERVIÇOS E PREÇOS (CARDS) */
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: -1.5rem;
+    margin-bottom: 3rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    padding: 2.5rem 2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.card.premium {
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
