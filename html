@@ -3,11 +3,10 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title> RL| Soluções Digitais Inteligentes</title>
+   <title> RL | Soluções Digitais Inteligentes</title>
    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 
    <header class="navbar">
        <div class="logo">R<span>&L</span></div>
@@ -21,7 +20,6 @@
        </nav>
    </header>
 
-
    <section id="home" class="hero">
        <div class="hero-content">
            <h1>Transformamos suas ideias em <span class="highlight">Código de Alto Impacto</span></h1>
@@ -29,7 +27,6 @@
            <a href="#contato" class="btn-primary">Solicitar Orçamento</a>
        </div>
    </section>
-
 
    <section id="sobre" class="about">
        <h2>Sobre Nós</h2>
@@ -40,7 +37,6 @@
            </div>
        </div>
    </section>
-
 
    <section id="servicos" class="services">
        <h2>Nossos Serviços</h2>
@@ -58,7 +54,6 @@
                </ul>
            </div>
 
-
            <div class="card premium">
                <div class="badge">Mais Vendido</div>
                <h3>E-commerce / Loja Virtual</h3>
@@ -70,7 +65,6 @@
                    <li> Painel de Controle Administrativo</li>
                </ul>
            </div>
-
 
            <div class="card">
                <h3>Sistemas Web Sob Medida</h3>
@@ -85,14 +79,12 @@
        </div>
    </section>
 
-
    <section id="contato" class="contact">
        <h2>Fale Conosco</h2>
        <p>Preencha o formulário abaixo ou fale diretamente com um desenvolvedor.</p>
 
-
        <div class="contact-container">
-           <form class="contact-form" onsubmit="alert('Mensagem enviada com sucesso! Entraremos em contato.'); return false;">
+           <form class="contact-form" id="contactForm">
                <input type="text" placeholder="Seu Nome" required>
                <input type="email" placeholder="Seu E-mail" required>
                <textarea placeholder="Fale um pouco sobre o seu projeto..." rows="5" required></textarea>
@@ -100,15 +92,82 @@
            </form>
        </div>
    </section>
-   <a href="https://wa.me/5544998096744?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20da%20R%26L." class="whatsapp-float" target="_blank">
-   <span class="whatsapp-icon">💬</span> Fale Conosco
-</a>
 
+   <a href="https://wa.me/5544998096744?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20da%20R%26L." class="whatsapp-float" target="_blank">
+       <span class="whatsapp-icon">💬</span> Fale Conosco
+   </a>
 
    <footer>
        <p>&copy; 2026 R&L. Desenvolvido para o Trabalho Prático de TDS.</p>
    </footer>
 
+   <script>
+       document.addEventListener("DOMContentLoaded", () => {
+           
+           // 1. ROLAGEM SUAVE AO CLICAR NOS LINKS DO MENU
+           const menuLinks = document.querySelectorAll('.navbar nav a, .hero-content .btn-primary');
+
+           menuLinks.forEach(link => {
+               link.addEventListener('click', (e) => {
+                   const targetId = link.getAttribute('href');
+                   
+                   // Verifica se o link é uma âncora interna
+                   if (targetId.startsWith('#')) {
+                       e.preventDefault();
+                       const targetSection = document.querySelector(targetId);
+                       
+                       if (targetSection) {
+                           targetSection.scrollIntoView({
+                               behavior: 'smooth',
+                               block: 'start'
+                           });
+                       }
+                   }
+               });
+           });
+
+           // 2. VALIDAÇÃO E ENVIO DO FORMULÁRIO DE CONTATO
+           const form = document.getElementById('contactForm');
+           if (form) {
+               form.addEventListener('submit', (e) => {
+                   e.preventDefault(); // Impede a página de recarregar
+                   
+                   // Captura o nome digitado para personalizar o alerta
+                   const nome = form.querySelector('input[type="text"]').value;
+                   
+                   alert(`Obrigado pelo contato, ${nome}! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.`);
+                   form.reset(); // Limpa os campos do formulário após o envio
+               });
+           }
+
+           // 3. ANIMAÇÃO SUAVE (FADE-IN) AO ROLAR A PÁGINA
+           const fadeElements = document.querySelectorAll('.card, .about-text, .contact-container');
+           
+           const checkScroll = () => {
+               fadeElements.forEach(element => {
+                   const elementTop = element.getBoundingClientRect().top;
+                   const windowHeight = window.innerHeight;
+                   
+                   // Ativa a animação quando o elemento surge 85% na tela
+                   if (elementTop < windowHeight * 0.85) {
+                       element.style.opacity = "1";
+                       element.style.transform = "translateY(0)";
+                       element.style.transition = "all 0.6s ease-out";
+                   }
+               });
+           };
+
+           // Configuração do estado inicial escondido para os elementos
+           fadeElements.forEach(element => {
+               element.style.opacity = "0";
+               element.style.transform = "translateY(20px)";
+           });
+
+           // Ativa o detector de rolagem
+           window.addEventListener('scroll', checkScroll);
+           checkScroll(); // Executa uma vez no início caso haja elementos visíveis
+       });
+   </script>
 
 </body>
 </html>
