@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -84,22 +84,49 @@
         <p>Preencha o formulário abaixo ou fale diretamente com um desenvolvedor.</p>
 
         <div class="contact-container">
-            <form class="contact-form" onsubmit="alert('Mensagem enviada com sucesso! Entraremos em contato.'); return false;">
-                <input type="text" placeholder="Seu Nome" required>
-                <input type="email" placeholder="Seu E-mail" required>
-                <textarea placeholder="Fale um pouco sobre o seu projeto..." rows="5" required></textarea>
+            <form class="contact-form" onsubmit="enviarParaWhatsapp(event)">
+                <input type="text" id="nome" placeholder="Seu Nome" required>
+                <input type="email" id="email" placeholder="Seu E-mail" required>
+                <textarea id="projeto" placeholder="Fale um pouco sobre o seu projeto..." rows="5" required></textarea>
                 <button type="submit" class="btn-submit">Enviar Mensagem</button>
             </form>
         </div>
     </section>
  
     <a href="https://wa.me/5544998096744?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20da%20R%26L." class="whatsapp-float" target="_blank">
-    <span class="whatsapp-icon">💬</span> Fale Conosco
-</a>
+        <span class="whatsapp-icon">💬</span> Fale Conosco
+    </a>
 
     <footer>
         <p>&copy; 2026 R&L. Desenvolvido para o Trabalho Prático de TDS.</p>
     </footer>
+
+    <script>
+    function enviarParaWhatsapp(event) {
+        // Evita que a página recarregue ao enviar o formulário
+        event.preventDefault();
+
+        // Pega os valores digitados nos inputs
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const projeto = document.getElementById('projeto').value;
+
+        // Seu número com código do país (55) e DDD (44)
+        const numeroWhatsapp = "5544998096744";
+
+        // Monta o texto quebrando linhas com %0A e aplicando negrito com os asteriscos (*)
+        const textoMensagem = `Olá! Gostaria de um orçamento da R&L.%0A%0A` +
+                              `*Nome:* ${encodeURIComponent(nome)}%0A` +
+                              `*E-mail:* ${encodeURIComponent(email)}%0A` +
+                              `*Projeto:* ${encodeURIComponent(projeto)}`;
+
+        // Gera a URL final da API do WhatsApp
+        const urlLink = `https://wa.me/${numeroWhatsapp}?text=${textoMensagem}`;
+
+        // Abre o WhatsApp em uma nova aba
+        window.open(urlLink, '_blank');
+    }
+    </script>
 
 </body>
 </html>
